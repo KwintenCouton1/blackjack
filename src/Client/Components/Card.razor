@@ -1,0 +1,13 @@
+﻿@using Domain 
+<img src="/images/@(getSourceString()).svg"/>
+@code {
+    [Parameter]
+    public BlackJackCard PlayingCard { get; set; }
+
+
+    public string getSourceString() {
+        if (PlayingCard.Value == 0)
+            return "BACK";
+        return $"{(int)PlayingCard.Value}{PlayingCard.Suit.ToString().Substring(0, 1)}";
+    }
+}

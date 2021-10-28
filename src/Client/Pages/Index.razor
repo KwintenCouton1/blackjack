@@ -1,3 +1,21 @@
 ﻿@page "/"
+@using Domain
+@using Client.Components 
 
 <h1>BlackJack</h1>
+@foreach (BlackJackCard card in game.DealerHand.Cards) {
+<Card PlayingCard="card">
+    </Card> }
+<br/>
+   @foreach (BlackJackCard card in game.PlayerHand.Cards) {
+<Card PlayingCard="card">
+    </Card> }
+
+<h2>@game.GameSummary()</h2>
+
+<button class="btn btn-primary" @onclick="(()=> game = new BlackJack())">New Game</button>
+<button class="btn btn-primary" @onclick="game.GivePlayerAnotherCard">Next card</button>
+<button class="btn btn-primary" @onclick="game.PassToDealer">Pass</button>
+@code{
+    public BlackJack game { get; set; } = new BlackJack();
+}
